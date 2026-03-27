@@ -20,30 +20,35 @@ public class Ruleta {
     }
 
     public static void menu() {
+        mostrarMenu();
+    }
+
+    public static void mostrarMenu() {
         System.out.println("BIENVENIDO A CASINO BLACK CAT");
         System.out.println("Selecciona la opción que quieres");
         System.out.println("1. Iniciar una apuesta \n2. Ver Estadísticas \n3. Salir");
     }
 
-    public static void mostrarMenu() {}
-
     public static int leerOpcion(Scanner in) {
-        int opcion = Scanner;
+        // que hago aquii aaaaaaaaaaa (preguntar)
+        return 0;
+    }
+
+    public static void ejecutarOpcion(int opcion, Scanner in) {
+        opcion = leerOpcion(in);
         if (opcion == 1) {
             System.out.println("Seleccionaste la opcion: Iniciar una apuesta");
-            mostrarMenu();
         } else if (opcion == 2) {
             System.out.println("Seleccionaste la opcion: Ver Estadísticas");
         } else if (opcion == 3) {
             System.out.println("Seleccionaste la opcion: Salir");
         }
-        // creo que esto está mal hecho
-        return 0;
+        // creo que esto está mal hecho, no entiendo que es Scanner in.
     }
 
-    public static void ejecutarOpcion(int opcion, Scanner in) {}
+    public static void iniciarRonda(Scanner in) {
 
-    public static void iniciarRonda(Scanner in) {}
+    }
 
     public static char leerTipoApuesta(Scanner in) {
         return 'a';
