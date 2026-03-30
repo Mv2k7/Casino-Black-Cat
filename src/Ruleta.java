@@ -1,3 +1,5 @@
+import org.w3c.dom.ls.LSOutput;
+
 import java.security.spec.RSAOtherPrimeInfo;
 import java.util.Random;
 import java.util.Scanner;
@@ -27,10 +29,16 @@ public class Ruleta {
         System.out.println("BIENVENIDO A CASINO BLACK CAT");
         System.out.println("Selecciona la opción que quieres");
         System.out.println("1. Iniciar una apuesta \n2. Ver Estadísticas \n3. Salir");
+
     }
 
     public static int leerOpcion(Scanner in) {
+        
         // que hago aquii aaaaaaaaaaa (preguntar)
+        System.out.println("Selecciona tu opción: ");
+
+        int opcion = in.nextInt();
+
         return 0;
     }
 
@@ -51,6 +59,7 @@ public class Ruleta {
     }
 
     public static char leerTipoApuesta(Scanner in) {
+
         return 'a';
     }
 
@@ -59,6 +68,7 @@ public class Ruleta {
     }
 
     public static boolean evaluarResultado(int numero, char tipo) {
+
         return false;
     }
 
