@@ -1,6 +1,3 @@
-import org.w3c.dom.ls.LSOutput;
-
-import java.security.spec.RSAOtherPrimeInfo;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -15,10 +12,6 @@ public class Ruleta {
 
     public static Random rng = new Random();
     public static int[] numerosRojos = {1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36};
-
-    public static void main(String[] args) {
-        menu();
-    }
 
     public static void menu() {
         while (true){
@@ -165,4 +158,3 @@ public class Ruleta {
                 "\nGanancia o Pérdida: " + ganancias);
     }
 }
-// Marcelo Vega - Clase POO
