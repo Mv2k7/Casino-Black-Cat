@@ -21,15 +21,19 @@ public class Ruleta {
     }
 
     public static void menu() {
-        mostrarMenu();
-        Scanner in = new Scanner(System.in);
-        int opcion;
-        opcion = leerOpcion(in);
-        ejecutarOpcion(opcion, in);
+        while (true){
+            mostrarMenu();
+            Scanner in = new Scanner(System.in);
+            int opcion;
+            opcion = leerOpcion(in);
+            ejecutarOpcion(opcion, in);
+            if (opcion == 3)
+                break;
+        }
     }
 
     public static void mostrarMenu() {
-        System.out.println("BIENVENIDO A CASINO BLACK CAT" +
+        System.out.println("\nBIENVENIDO A CASINO BLACK CAT" +
                 "\nSelecciona la opción que quieres" +
                 "\n1. Iniciar una apuesta \n2. Ver Estadísticas \n3. Salir");
     }
@@ -46,8 +50,9 @@ public class Ruleta {
             iniciarRonda(in);
         } else if (opcion == 2) {
             System.out.println("Seleccionaste la opcion: Ver Estadísticas\n");
+            mostrarEstadisticas();
         } else if (opcion == 3) {
-            System.out.println("Seleccionaste la opcion: Salir\n");
+            System.out.println("Seleccionaste la opcion: Salir\nHasta Luego!");
         } else {
             System.out.println("Opción inválida...");
         }
@@ -160,3 +165,4 @@ public class Ruleta {
                 "\nGanancia o Pérdida: " + ganancias);
     }
 }
+// Marcelo Vega - Clase POO
