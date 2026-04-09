@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VentanaLogin {
-    // Lista de usuarios
+    // Lista dinámica de usuarios
     public static final List<Usuario> USUARIOS = new ArrayList<>();
 
     // UI
@@ -13,46 +13,41 @@ public class VentanaLogin {
     private final JLabel lblClave           = new JLabel("Clave:");
     private final JPasswordField txtClave   = new JPasswordField();
     private final JButton btnIngresar       = new JButton("Ingresar");
-    private final JButton btnRegistro       = new JButton("Registrarse");
 
     public VentanaLogin() {
-        // usuarios hardcodeados
+        // TODO: inicializar usuarios hardcodeados
         USUARIOS.add(new Usuario("marchelito", "si", "Marcelo"));
-
+        // TODO: inicializar y configurar la ventana
         //Ventana
         frame.setSize(400, 300);
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Posiciones
-        lblUsuario.setBounds(30, 10, 300, 30);
-        txtUsuario.setBounds(35, 40, 300, 30);
+        lblUsuario.setBounds(30, 10, 300, 30); // Texto que indica, usuario
+        txtUsuario.setBounds(35, 40, 300, 30); // Cajita donde ingresar datos
 
         lblClave.setBounds(30, 70, 300, 30);
         txtClave.setBounds(35, 100, 300, 30);
 
-        btnIngresar.setBounds(75, 150, 250, 30);
-        btnRegistro.setBounds(75, 200, 250, 30);
+        btnIngresar.setBounds(75, 200, 250, 30);
 
         frame.add(lblUsuario);
         frame.add(txtUsuario);
         frame.add(lblClave);
         frame.add(txtClave);
         frame.add(btnIngresar);
-        frame.add(btnRegistro);
 
         btnIngresar.addActionListener(e -> login());
-        btnRegistro.addActionListener(e -> abrirRegistro());
     }
 
     public void mostrarVentana() {
-
+        // TODO: mostrar ventana
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 
     private void login() {
-
         String usuario = txtUsuario.getText();
         String clave = new String(txtClave.getPassword());
 
@@ -67,7 +62,7 @@ public class VentanaLogin {
     }
 
     private String validarCredenciales(String u, String p) {
-
+        // TODO: recorrer arreglo y validar credenciales
         for (Usuario user : USUARIOS) {
             if (user.validarCredenciales(u, p)) {
                 return user.getNombre();
@@ -76,9 +71,6 @@ public class VentanaLogin {
         return "";
     }
     public void abrirRegistro() {
-    VentanaRegistro registro = new VentanaRegistro();
-    registro.mostrarVentana();
-
-    frame.dispose();
+    JOptionPane.showMessageDialog(frame, "Estamos trabajando en ello...");
     }
 }
