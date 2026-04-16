@@ -15,8 +15,9 @@ public class VentanaLogin {
     private final JButton btnIngresar       = new JButton("Ingresar");
 
     public VentanaLogin() {
-
+        // usuario hardcodeado:
         USUARIOS.add(new Usuario("marchelito", "si", "Marcelo"));
+        USUARIOS.add(new Usuario("asd", "asd", "DonDonnie"));
         //Ventana
         frame.setSize(400, 300);
         frame.setLayout(null);
@@ -52,17 +53,15 @@ public class VentanaLogin {
 
         String nombre = validarCredenciales(usuario, clave);
 
-        if (!nombre.equals("")) {
+        if (!nombre.isEmpty()) {
             JOptionPane.showMessageDialog(frame, "Bienvenido! " + nombre);
             frame.dispose();
             VentanaMenu inicio = new VentanaMenu();
-            inicio.mostrarInicio();
+            inicio.mostrarVentana();
         }
-
     }
 
     private String validarCredenciales(String u, String p) {
-
         for (Usuario user : USUARIOS) {
             if (user.validarCredenciales(u, p)) {
                 return user.getNombre();

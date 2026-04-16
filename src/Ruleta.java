@@ -13,73 +13,73 @@ public class Ruleta {
     public static Random rng = new Random();
     public static int[] numerosRojos = {1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36};
 
-    public static void menu() {
-        while (true){
-            mostrarMenu();
-            Scanner in = new Scanner(System.in);
-            int opcion;
-            opcion = leerOpcion(in);
-            ejecutarOpcion(opcion, in);
-            if (opcion == 3)
-                break;
-        }
-    }
+//    public static void menu() {
+//        while (true){
+//            mostrarMenu();
+//            Scanner in = new Scanner(System.in);
+//            int opcion;
+//            opcion = leerOpcion(in);
+//            ejecutarOpcion(opcion, in);
+//            if (opcion == 3)
+//                break;
+//        }
+//    }
 
-    public static void mostrarMenu() {
-        System.out.println("\nBIENVENIDO A CASINO BLACK CAT" +
-                "\nSelecciona la opción que quieres" +
-                "\n1. Iniciar una apuesta \n2. Ver Estadísticas \n3. Salir");
-    }
-
-    public static int leerOpcion(Scanner in) {
-        System.out.println("Selecciona tu opción: ");
-        int opcion = in.nextInt();
-        return opcion; // creo que puede ser mas corto
-    }
-
-    public static void ejecutarOpcion(int opcion, Scanner in) {
-        if (opcion == 1) {
-            System.out.println("Seleccionaste la opcion: Iniciar una ronda\n");
-            iniciarRonda(in);
-        } else if (opcion == 2) {
-            System.out.println("Seleccionaste la opcion: Ver Estadísticas\n");
-            mostrarEstadisticas();
-        } else if (opcion == 3) {
-            System.out.println("Seleccionaste la opcion: Salir\nHasta Luego!");
-        } else {
-            System.out.println("Opción inválida...");
-        }
-    }
-
-    public static char leerTipoApuesta(Scanner in) {
-        System.out.println("BIENVENIDO A LA RULETA!" +
-                "\nSelecciona tu tipo de apuesta" +
-                "\nP/I (Par o Impar) Y R/N (Rojo o Negro)");
-
-        char apuesta = in.next().charAt(0); // Para la primera letra
-        apuesta = Character.toLowerCase(apuesta); // Para que sea minúscula
-
-        while (apuesta != 'p' && apuesta != 'i' && apuesta != 'r' && apuesta != 'n') {
-            System.out.println("Opcion inválida, intenta otra vez por favor.");
-            apuesta = in.next().charAt(0);
-            // Esto es para que si elige cualquier valor, que no sea p/i/r/n, reintente.
-        }
-
-        return apuesta;
-    }
-
-    public static void iniciarRonda(Scanner in) {
-        // Aquí voy a definir todas las variables utilizadas al momento de jugar
-        char tipo = leerTipoApuesta(in);
-        System.out.println("ELIGE EL MONTO");
-        int monto = in.nextInt(); // monto a jugar
-        System.out.println("ELIGE EL NÚMERO!!");
-        int numero = girarRuleta();
-        boolean acierto = evaluarResultado(numero, tipo);
-
-        registrarResultado(numero, monto, acierto);
-        mostrarResultado(numero, tipo, monto, acierto);
-    }
+//    public static void mostrarMenu() {
+//        System.out.println("\nBIENVENIDO A CASINO BLACK CAT" +
+//                "\nSelecciona la opción que quieres" +
+//                "\n1. Iniciar una apuesta \n2. Ver Estadísticas \n3. Salir");
+//    }
+//
+//    public static int leerOpcion(Scanner in) {
+//        System.out.println("Selecciona tu opción: ");
+//        int opcion = in.nextInt();
+//        return opcion; // creo que puede ser mas corto
+//    }
+//
+//    public static void ejecutarOpcion(int opcion, Scanner in) {
+//        if (opcion == 1) {
+//            System.out.println("Seleccionaste la opcion: Iniciar una ronda\n");
+//            iniciarRonda(in);
+//        } else if (opcion == 2) {
+//            System.out.println("Seleccionaste la opcion: Ver Estadísticas\n");
+//            mostrarEstadisticas();
+//        } else if (opcion == 3) {
+//            System.out.println("Seleccionaste la opcion: Salir\nHasta Luego!");
+//        } else {
+//            System.out.println("Opción inválida...");
+//        }
+//    }
+//
+//    public static char leerTipoApuesta(Scanner in) {
+//        System.out.println("BIENVENIDO A LA RULETA!" +
+//                "\nSelecciona tu tipo de apuesta" +
+//                "\nP/I (Par o Impar) Y R/N (Rojo o Negro)");
+//
+//        char apuesta = in.next().charAt(0); // Para la primera letra
+//        apuesta = Character.toLowerCase(apuesta); // Para que sea minúscula
+//
+//        while (apuesta != 'p' && apuesta != 'i' && apuesta != 'r' && apuesta != 'n') {
+//            System.out.println("Opcion inválida, intenta otra vez por favor.");
+//            apuesta = in.next().charAt(0);
+//            // Esto es para que si elige cualquier valor, que no sea p/i/r/n, reintente.
+//        }
+//
+//        return apuesta;
+//    }
+//
+// TODO:
+//    public static void iniciarRonda(Scanner in) {
+//        // Aquí voy a definir todas las variables utilizadas al momento de jugar
+//        char tipo = leerTipoApuesta(in);
+//        System.out.println("ELIGE EL MONTO");
+//        int monto = in.nextInt(); // monto a jugar
+//        System.out.println("ELIGE EL NÚMERO!!");
+//        int numero = girarRuleta();
+//        boolean acierto = evaluarResultado(numero, tipo);
+//        registrarResultado(numero, monto, acierto);
+//        mostrarResultado(numero, tipo, monto, acierto);
+//    }
 
     public static int girarRuleta() {
         return rng.nextInt(37); // retorna un número random desde el 0 hasta el 36
