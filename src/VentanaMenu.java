@@ -60,8 +60,14 @@ public class VentanaMenu {
         mostrarVentana();
     }
     private void abrirJugar() {
+        frame.dispose();
+        VentanaRuleta ruleta = new VentanaRuleta();
+        ruleta.mostrarRuleta();
     }
     private void abrirHistorial() {
+        frame.dispose();
+        VentanaRegistro registro = new VentanaRegistro();
+        registro.mostrarHistorial();
     }
     private void abrirSalir() {
         VentanaLogin login = new VentanaLogin();

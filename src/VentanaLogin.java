@@ -6,7 +6,7 @@ public class VentanaLogin {
     // Lista dinámica de usuarios
     public static final List<Usuario> USUARIOS = new ArrayList<>();
 
-    // UI
+    // Interfaz
     private final JFrame frame              = new JFrame("Login - Casino Black Cat");
     private final JLabel lblUsuario         = new JLabel("Usuario:");
     private final JTextField txtUsuario     = new JTextField();
