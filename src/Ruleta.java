@@ -16,6 +16,16 @@ public class Ruleta {
     public static int girarRuleta() {
         return rng.nextInt(37);
     }
+    public static String jugar(char tipo, int apuesta) {
+        int numero = girarRuleta();
+        boolean acierto = evaluarResultado(numero, tipo);
+        registrarResultado(numero, apuesta, acierto);
+        if (acierto) {
+            return "Número: " + numero + " → GANASTE!";
+        } else {
+            return "Número: " + numero + " → PERDISTE";
+        }
+    }
 
     public static boolean evaluarResultado(int numero, char tipo) {
         switch (tipo) {
