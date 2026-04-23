@@ -51,23 +51,25 @@ public class VentanaLogin {
         String usuario = txtUsuario.getText();
         String clave = new String(txtClave.getPassword());
 
-        String nombre = validarCredenciales(usuario, clave);
+        Usuario user = validarCredenciales(usuario, clave);
 
-        if (!nombre.isEmpty()) {
-            JOptionPane.showMessageDialog(frame, "Bienvenido! " + nombre);
+        if (user != null) {
+            JOptionPane.showMessageDialog(frame, "Bienvenido! " + user.getNombre());
             frame.dispose();
-            VentanaMenu inicio = new VentanaMenu();
+            VentanaMenu inicio = new VentanaMenu(user);
             inicio.mostrarVentana();
+        } else {
+            JOptionPane.showMessageDialog(frame, "Usuario o clave incorrectos.");
         }
     }
 
-    private String validarCredenciales(String u, String p) {
+    private Usuario validarCredenciales(String u, String p) {
         for (Usuario user : USUARIOS) {
             if (user.validarCredenciales(u, p)) {
-                return user.getNombre();
+                return user;
             }
         }
-        return "";
+        return null;
     }
     public void abrirRegistro() {
     JOptionPane.showMessageDialog(frame, "Estamos trabajando en ello...");

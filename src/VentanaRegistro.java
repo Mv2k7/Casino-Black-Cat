@@ -6,8 +6,11 @@ public class VentanaRegistro {
     private final JLabel lblHistorial = new JLabel("Historial");
     private final JTextField username = new JTextField();
     private final JButton btnAtras = new JButton("Atras");
+    private Usuario usuario;
 
-    public VentanaRegistro() {
+    public VentanaRegistro(Usuario usuario) {
+        this.usuario = usuario;
+
         frame.setSize(500, 400);
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -21,9 +24,30 @@ public class VentanaRegistro {
 
         btnAtras.addActionListener(e -> {
             frame.dispose();
-            VentanaMenu menu = new VentanaMenu();
+            VentanaMenu menu = new VentanaMenu(usuario);
             menu.mostrarVentana();
         });
+        JTextArea area = new JTextArea();
+        area.setBounds(50, 80, 380, 220);
+        area.setEditable(false);
+
+        String texto = "";
+
+        for (int i = 0; i < Ruleta.historialSize; i++) {
+            texto += "Número: " + Ruleta.historialNumeros[i];
+            texto += " | Apuesta: " + Ruleta.historialApuestas[i];
+
+            if (Ruleta.historialAciertos[i]) {
+                texto += " | GANÓ";
+            } else {
+                texto += " | PERDIÓ";
+            }
+
+            texto += "\n";
+        }
+
+        area.setText(texto);
+        frame.add(area);
     }
 
     public void mostrarHistorial() {

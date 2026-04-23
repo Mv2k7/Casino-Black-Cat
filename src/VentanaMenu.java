@@ -9,11 +9,12 @@ public class VentanaMenu {
     private final JButton btnJugar          = new JButton("Jugar");
     private final JButton btnHistorial      = new JButton("Historial");
     private final JButton btnSalir          = new JButton("Salir");
-
     private final JPanel panelInfo          = new JPanel();
 
-    public VentanaMenu() {
+    private Usuario usuario;
 
+    public VentanaMenu(Usuario usuario) {
+        this.usuario = usuario;
         // Ventana
         frame.setSize(500, 400);
         frame.setLayout(null);
@@ -61,12 +62,12 @@ public class VentanaMenu {
     }
     private void abrirJugar() {
         frame.dispose();
-        VentanaRuleta ruleta = new VentanaRuleta();
+        VentanaRuleta ruleta = new VentanaRuleta(usuario);
         ruleta.mostrarRuleta();
     }
     private void abrirHistorial() {
         frame.dispose();
-        VentanaRegistro registro = new VentanaRegistro();
+        VentanaRegistro registro = new VentanaRegistro(usuario);
         registro.mostrarHistorial();
     }
     private void abrirSalir() {
