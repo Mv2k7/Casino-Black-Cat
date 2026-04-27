@@ -1,5 +1,9 @@
+package Vista;
+
+import Modelo.Ruleta;
+import Modelo.Usuario;
+
 import javax.swing.*;
-import java.awt.*;
 
 public class VentanaRegistro {
     private final JFrame frame = new JFrame("Registro - Casino Black Cat");

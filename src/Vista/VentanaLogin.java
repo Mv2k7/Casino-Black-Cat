@@ -1,3 +1,7 @@
+package Vista;
+
+import Modelo.Usuario;
+
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +12,7 @@ public class VentanaLogin {
 
     // Interfaz
     private final JFrame frame              = new JFrame("Login - Casino Black Cat");
-    private final JLabel lblUsuario         = new JLabel("Usuario:");
+    private final JLabel lblUsuario         = new JLabel("Modelo.Usuario:");
     private final JTextField txtUsuario     = new JTextField();
     private final JLabel lblClave           = new JLabel("Clave:");
     private final JPasswordField txtClave   = new JPasswordField();
@@ -59,7 +63,7 @@ public class VentanaLogin {
             VentanaMenu inicio = new VentanaMenu(user);
             inicio.mostrarVentana();
         } else {
-            JOptionPane.showMessageDialog(frame, "Usuario o clave incorrectos.");
+            JOptionPane.showMessageDialog(frame, "Modelo.Usuario o clave incorrectos.");
         }
     }
 
