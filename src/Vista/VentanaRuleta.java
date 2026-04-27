@@ -1,7 +1,6 @@
 package Vista;
 
-import Modelo.Usuario;
-import Modelo.Ruleta;
+import Controlador.*;
 
 import javax.swing.*;
 

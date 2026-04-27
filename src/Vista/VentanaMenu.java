@@ -1,6 +1,6 @@
 package Vista;
 
-import Modelo.Usuario;
+import Controlador.*;
 
 import javax.swing.*;
 import java.awt.*;
