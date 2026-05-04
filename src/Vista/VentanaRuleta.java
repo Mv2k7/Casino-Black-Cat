@@ -5,13 +5,13 @@ import Controlador.*;
 import javax.swing.*;
 
 public class VentanaRuleta {
-    private final JFrame frame          = new JFrame("RULETA! - Casino Black Cat");
-    private final JComboBox<String> cbTipoApuesta = new JComboBox<>(new String[]{"Tipo de apuesta...", "Colores", "Paridad"});
-    private final JComboBox<String> cbOpcion = new JComboBox<>(new String[]{"Seleccione opcion..."});
-    private final JButton btnGirar      = new JButton("Girar Modelo.Ruleta!");
-    private final JButton btnAtras      = new JButton("Atras");
-    private final JTextField txtMonto = new JTextField();
-    private final JLabel lblMonto = new JLabel("Monto:");
+    private final JFrame frame                      = new JFrame("RULETA! - Casino Black Cat");
+    private final JComboBox<String> cbTipoApuesta   = new JComboBox<>(new String[]{"Tipo de apuesta...", "Colores", "Paridad"});
+    private final JComboBox<String> cbOpcion        = new JComboBox<>(new String[]{"Seleccione opcion..."});
+    private final JButton btnGirar                  = new JButton("Girar Ruleta!");
+    private final JButton btnAtras                  = new JButton("Atras");
+    private final JTextField txtMonto               = new JTextField();
+    private final JLabel lblMonto                   = new JLabel("Monto:");
 
     private Usuario usuario;
 

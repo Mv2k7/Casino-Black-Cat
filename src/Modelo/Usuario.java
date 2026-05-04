@@ -12,6 +12,10 @@ public class Usuario {
         this.nombre = nombre;
     }
 
+    public Usuario() {
+        this("Invitado", "", "invitado");
+    }
+
     public boolean validarCredenciales(String u, String p) {
         return this.username.equals(u) && this.password.equals(p);
     }
@@ -29,5 +33,11 @@ public class Usuario {
 
     public void restarSaldo(int monto) {
         saldo -= monto;
+    }
+
+    public void setNombre(String nombre) {
+        if (nombre != null && !nombre.isBlank()) {
+            this.nombre = nombre;
+        }
     }
 }

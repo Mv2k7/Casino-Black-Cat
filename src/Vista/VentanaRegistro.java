@@ -6,10 +6,10 @@ import Controlador.*;
 import javax.swing.*;
 
 public class VentanaRegistro {
-    private final JFrame frame = new JFrame("Registro - Casino Black Cat");
-    private final JLabel lblHistorial = new JLabel("Historial");
-    private final JTextField username = new JTextField();
-    private final JButton btnAtras = new JButton("Atras");
+    private final JFrame frame          = new JFrame("Registro - Casino Black Cat");
+    private final JLabel lblHistorial   = new JLabel("Historial");
+    private final JTextField username   = new JTextField();
+    private final JButton btnAtras      = new JButton("Atras");
     private Usuario usuario;
 
     public VentanaRegistro(Usuario usuario) {
@@ -54,12 +54,6 @@ public class VentanaRegistro {
         frame.add(area);
     }
 
-    public void mostrarHistorial() {
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }
-
-
     public static void mostrarEstadisticas() {
         int partidas = Ruleta.historialSize;
         int gastado = 0;
@@ -86,5 +80,9 @@ public class VentanaRegistro {
                 "\nTotal aciertos: " + aciertos +
                 "\nPorcentaje de aciertos " + porcentaje + "%" +
                 "\nGanancia o Pérdida: " + ganancias);
+    }
+    public void mostrarHistorial() {
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
 }

@@ -15,10 +15,7 @@ public class VentanaMenu {
     private final JButton btnSalir          = new JButton("Salir");
     private final JPanel panelInfo          = new JPanel();
 
-    private Usuario usuario;
-
-    public VentanaMenu(Usuario usuario) {
-        this.usuario = usuario;
+    public VentanaMenu(SesionControlador sesion, RuletaControlador ruletaControlador) {
         // Ventana
         frame.setSize(500, 400);
         frame.setLayout(null);
@@ -55,11 +52,7 @@ public class VentanaMenu {
         btnHistorial.addActionListener(e -> abrirHistorial());
         btnSalir.addActionListener(e -> abrirSalir());
     }
-    public void mostrarVentana() {
 
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }
     private void abrirInicio(){
         frame.dispose();
         mostrarVentana();
@@ -79,7 +72,9 @@ public class VentanaMenu {
         login.mostrarVentana();
         frame.dispose();
     }
+    public void mostrarVentana() {
+
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
 }
-
-// CREO QUE DEBO CREAR PARA CADA BOTON UNA CLASE Y CREAR UNA CLASE QUE LEA LA LOGICA DE ESTOS BOTONES.
-
