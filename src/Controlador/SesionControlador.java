@@ -3,20 +3,26 @@ package Controlador;
 import Modelo.Usuario;
 
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SesionControlador {
-
+    private List<Usuario> usuarios = new ArrayList<>();
     private Usuario usuarioActual;
 
     public void registrarUsuario(String usuario, String clave, String n) {
-        if (usuario == null || usuario.isBlank() || clave == null || clave.isBlank() || n == null || n.
-                isBlank())
+        if (usuario == null || usuario.isBlank() || clave == null || clave.isBlank() || n == null || n.isBlank())
             throw new IllegalArgumentException("Datos requeridos");
-        this.usuarioActual = new Usuario(usuario, clave, n);
+        usuarios.add(new Usuario(usuario, clave, n));
     }
     public boolean iniciarSesion(String usuario, String clave) {
-        if (usuarioActual == null) return false;
-        return usuarioActual.validarCredenciales(usuario, clave);
+        for (Usuario u : usuarios) {
+            if (u.validarCredenciales(usuario, clave)) {
+                usuarioActual = u;
+                return true;
+            }
+        }
+        return false;
     }
     public boolean hayUsuario() {
         return usuarioActual != null;

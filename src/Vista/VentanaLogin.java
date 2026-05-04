@@ -47,7 +47,7 @@ public class VentanaLogin {
 //        return null;
 //    }
 
-    private void intentarLogin(SesionControlador  sesion) {
+    private void intentarLogin(SesionControlador sesion) {
         String usuario = txtUsuario.getText();
         String clave = new String(txtClave.getPassword());
 

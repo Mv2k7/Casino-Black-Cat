@@ -13,11 +13,11 @@ public class Usuario {
     }
 
     public Usuario() {
-        this("Invitado", "", "invitado");
+        this("invitado", "", "invitado");
     }
 
-    public boolean validarCredenciales(String u, String p) {
-        return this.username.equals(u) && this.password.equals(p);
+    public boolean validarCredenciales(String usuario, String clave) {
+        return this.username.equals(usuario) && this.password.equals(clave);
     }
 
     public String getNombre() {

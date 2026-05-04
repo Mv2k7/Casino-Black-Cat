@@ -1,6 +1,7 @@
 package Vista;
 
 import Controlador.*;
+import Modelo.Ruleta;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +16,13 @@ public class VentanaMenu {
     private final JButton btnSalir          = new JButton("Salir");
     private final JPanel panelInfo          = new JPanel();
 
+    private final SesionControlador sesion;
+    private final RuletaControlador controlador;
+
     public VentanaMenu(SesionControlador sesion, RuletaControlador ruletaControlador) {
+        this.sesion = sesion;
+        this.controlador = ruletaControlador;
+
         // Ventana
         frame.setSize(500, 400);
         frame.setLayout(null);
@@ -59,21 +66,18 @@ public class VentanaMenu {
     }
     private void abrirJugar() {
         frame.dispose();
-        VentanaRuleta ruleta = new VentanaRuleta(usuario);
-        ruleta.mostrarRuleta();
+        new VentanaRuleta(sesion, controlador).mostrarRuleta();
     }
     private void abrirHistorial() {
         frame.dispose();
-        VentanaRegistro registro = new VentanaRegistro(usuario);
-        registro.mostrarHistorial();
+        new VentanaRegistro(sesion, controlador).mostrarHistorial();
     }
     private void abrirSalir() {
-        VentanaLogin login = new VentanaLogin();
-        login.mostrarVentana();
+        sesion.cerrarSesion();
         frame.dispose();
+        new VentanaLogin(sesion).mostrarVentana();
     }
     public void mostrarVentana() {
-
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }

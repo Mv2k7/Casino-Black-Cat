@@ -51,10 +51,10 @@ public class Ruleta {
         historialSize++;
         if (acierto) {
             saldo += apuesta;
-            return "Número: " + numero + "GANASTE!";
+            return "Número: " + numero + " - GANASTE!";
         } else {
             saldo -= apuesta;
-            return "Número: " + numero + "PERDISTE";
+            return "Número: " + numero + " - PERDISTE";
         }
     }
 

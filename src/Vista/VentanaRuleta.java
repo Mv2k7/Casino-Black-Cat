@@ -1,6 +1,7 @@
 package Vista;
 
 import Controlador.*;
+import Modelo.TipoApuesta;
 
 import javax.swing.*;
 
@@ -13,10 +14,13 @@ public class VentanaRuleta {
     private final JTextField txtMonto               = new JTextField();
     private final JLabel lblMonto                   = new JLabel("Monto:");
 
-    private Usuario usuario;
+    private final SesionControlador sesion;
+    private final RuletaControlador controlador;
 
-    public VentanaRuleta(Usuario usuario) {
-        this.usuario = usuario;
+    public VentanaRuleta(SesionControlador sesion, RuletaControlador ruletaControlador) {
+        this.sesion = sesion;
+        this.controlador = ruletaControlador;
+
         frame.setSize(500, 400);
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,62 +40,42 @@ public class VentanaRuleta {
         frame.add(txtMonto);
         frame.add(lblMonto);
 
-        btnAtras.addActionListener(e -> {
-            frame.dispose();
-            VentanaMenu menu = new VentanaMenu(usuario);
-            menu.mostrarVentana();
-        });
+        btnAtras.addActionListener(e -> botonAtras());
         cbTipoApuesta.addActionListener(e -> actualizarOpciones());
-        btnGirar.addActionListener(e -> {
-
-            if (cbOpcion.getSelectedIndex() <= 0) {
-                JOptionPane.showMessageDialog(frame, "Selecciona una opción.");
-                return;
-            }
-
-            int monto;
-
-            try {
-                monto = Integer.parseInt(txtMonto.getText());
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(frame, "Monto inválido");
-                return;
-            }
-
-            if (monto > usuario.getSaldo()) {
-                JOptionPane.showMessageDialog(frame, "No tienes suficiente saldo");
-                return;
-            }
-
-            char tipo = obtenerTipoApuesta();
-
-            String resultado = Ruleta.jugar(tipo, monto);
-
-            if (resultado.contains("GANASTE")) {
-                usuario.sumarSaldo(monto);
-            } else {
-                usuario.restarSaldo(monto);
-            }
-
-            JOptionPane.showMessageDialog(frame,
-                    resultado + "\nSaldo: $" + usuario.getSaldo());
-        });
+        btnGirar.addActionListener(e -> intentarJugar(ruletaControlador));
     }
 
-    private char obtenerTipoApuesta() {
-        String opcion = (String) cbOpcion.getSelectedItem();
+    private void botonAtras() {
+        frame.dispose();
+        new VentanaMenu(sesion, controlador).mostrarVentana();
 
-        switch (opcion) {
-            case "Rojo":
-                return 'r';
-            case "Negro":
-                return 'n';
-            case "Par":
-                return 'p';
-            case "Impar":
-                return 'i';
+    }
+    private void intentarJugar(RuletaControlador controlador) {
+        if (cbOpcion.getSelectedIndex() <= 0) {
+            JOptionPane.showMessageDialog(null, "Seleccione una opcion");
+            return;
         }
-        return ' '; // por si algo falla
+        int monto;
+        try {
+            monto = Integer.parseInt(txtMonto.getText());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(frame, "Ingrese un monto válido");
+            return;
+        }
+        String opcion = (String) cbOpcion.getSelectedItem();
+        TipoApuesta tipo = TipoApuesta.valueOf(opcion.toUpperCase());
+
+        String resultado = controlador.intentarJugar(tipo, monto);
+
+        if (resultado.startsWith("ERROR:")) {
+            JOptionPane.showMessageDialog(frame, resultado.substring(6));
+        } else {
+            JOptionPane.showMessageDialog(frame,
+                    resultado + "\nSaldo: $" + controlador.getSaldo());
+        }
+    }
+    private void stringToEnum(RuletaControlador controlador) {
+
     }
 
     private void actualizarOpciones() {
