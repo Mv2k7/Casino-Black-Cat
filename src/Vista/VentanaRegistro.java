@@ -10,11 +10,11 @@ public class VentanaRegistro {
     private final JLabel lblHistorial   = new JLabel("Historial");
     private final JTextField username   = new JTextField();
     private final JButton btnAtras      = new JButton("Atras");
-    private JTextArea area = new JTextArea();
+    private JTextArea area              = new JTextArea();
 
 
     public VentanaRegistro(SesionControlador sesion, RuletaControlador ruleta) {
-        ResultadoControlador resultadoControlador = new ResultadoControlador(ruleta.getRuleta());
+        ResultadoControlador resultadoControlador = new ResultadoControlador(sesion);
         frame.setSize(500, 400);
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,29 +36,5 @@ public class VentanaRegistro {
             VentanaMenu menu = new VentanaMenu(sesion, ruleta);
             menu.mostrarVentana();
         });
-    }
-//
-//
-//
-//
-//        String texto = "";
-//
-//        for (int i = 0; i < Ruleta.historialSize; i++) {
-//            texto += "Número: " + Ruleta.historialNumeros[i];
-//            texto += " | Apuesta: " + Ruleta.historialApuestas[i];
-//
-//            if (Ruleta.historialAciertos[i]) {
-//                texto += " | GANÓ";
-//            } else {
-//                texto += " | PERDIÓ";
-//            }
-//
-//            texto += "\n";
-//        }
-//    }
-
-    public void mostrarHistorial() {
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
     }
 }

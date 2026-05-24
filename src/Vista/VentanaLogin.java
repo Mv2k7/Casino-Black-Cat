@@ -38,15 +38,6 @@ public class VentanaLogin {
         btnIngresar.addActionListener(e -> intentarLogin(sesion));
     }
 
-//    private Usuario validarCredenciales(String u, String p) {
-//        for (Usuario user : USUARIOS) {
-//            if (user.validarCredenciales(u, p)) {
-//                return user;
-//            }
-//        }
-//        return null;
-//    }
-
     private void intentarLogin(SesionControlador sesion) {
         String usuario = txtUsuario.getText();
         String clave = new String(txtClave.getPassword());
@@ -54,7 +45,7 @@ public class VentanaLogin {
         if (sesion.iniciarSesion(usuario, clave)) {
             frame.dispose();
             Ruleta ruleta = new Ruleta(sesion.getUsuarioActual().getSaldo());
-            RuletaControlador ruletaControlador = new RuletaControlador(ruleta);
+            RuletaControlador ruletaControlador = new RuletaControlador(ruleta, sesion);
             new VentanaMenu(sesion, ruletaControlador).mostrarVentana();
         } else {
             JOptionPane.showMessageDialog(frame, "Usuario o clave incorrectos.");

@@ -70,7 +70,7 @@ public class VentanaMenu {
     }
     private void abrirHistorial() {
         frame.dispose();
-        new VentanaRegistro(sesion, controlador).mostrarHistorial();
+        new VentanaHistorial(sesion, controlador).mostrarHistorial();
     }
     private void abrirSalir() {
         sesion.cerrarSesion();

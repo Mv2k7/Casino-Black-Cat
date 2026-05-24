@@ -65,17 +65,12 @@ public class VentanaRuleta {
         String opcion = (String) cbOpcion.getSelectedItem();
         TipoApuesta tipo = TipoApuesta.valueOf(opcion.toUpperCase());
 
-        String resultado = controlador.intentarJugar(tipo, monto);
-
-        if (resultado.startsWith("ERROR:")) {
-            JOptionPane.showMessageDialog(frame, resultado.substring(6));
-        } else {
-            JOptionPane.showMessageDialog(frame,
-                    resultado + "\nSaldo: $" + controlador.getSaldo());
+        try {
+            String resultado = controlador.intentarJugar(tipo, monto);
+            JOptionPane.showMessageDialog(frame, resultado);
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(frame, e.getMessage());
         }
-    }
-    private void stringToEnum(RuletaControlador controlador) {
-
     }
 
     private void actualizarOpciones() {
