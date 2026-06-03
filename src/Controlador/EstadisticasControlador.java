@@ -1,39 +1,34 @@
 package Controlador;
 
 import Modelo.Estadisticas;
-import Modelo.Resultado;
-import java.util.List;
+import Modelo.IRepositorioResultados;
 
 public class EstadisticasControlador {
-    private final SesionControlador sesion;
+    private final IRepositorioResultados repositorio;
     private final Estadisticas estadisticas = new Estadisticas();
 
-    public EstadisticasControlador(SesionControlador sesion) {
-        this.sesion = sesion;
-    }
-
-    private List<Resultado> getHistorial() {
-        return sesion.getUsuarioActual().getHistorial();
+    public EstadisticasControlador(IRepositorioResultados repositorio) {
+        this.repositorio = repositorio;
     }
 
     public int getTotalJugadas() {
-        return estadisticas.calcularTotalJugadas(getHistorial());
+        return estadisticas.calcularTotalJugadas(repositorio);
     }
 
     public int getVictorias() {
-        return estadisticas.calcularVictorias(getHistorial());
+        return estadisticas.calcularVictorias(repositorio);
     }
 
     public double getPorcentajeVictorias() {
-        return estadisticas.calcularPorcentajeVictorias(getHistorial());
+        return estadisticas.calcularPorcentajeVictorias(repositorio);
     }
 
     public int getRachaMaxima() {
-        return estadisticas.calcularRachaMaxima(getHistorial());
+        return estadisticas.calcularRachaMaxima(repositorio);
     }
 
     public String getTipoMasJugado() {
-        if (getHistorial().isEmpty()) return null;
-        return estadisticas.calcularTipoMasJugado(getHistorial());
+        if (repositorio.obtenerTodos().isEmpty()) return "No se ha jugado";
+        return estadisticas.calcularTipoMasJugado(repositorio);
     }
 }

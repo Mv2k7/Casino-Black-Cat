@@ -16,7 +16,9 @@ public class VentanaEstadisticas {
         this.sesion      = sesion;
         this.controlador = controlador;
 
-        EstadisticasControlador estadisticas = new EstadisticasControlador(sesion);
+        EstadisticasControlador estadisticas = new EstadisticasControlador(
+                controlador.getRuleta().getRepositorio()
+        );
 
         frame.setSize(500, 400);
         frame.setLayout(null);

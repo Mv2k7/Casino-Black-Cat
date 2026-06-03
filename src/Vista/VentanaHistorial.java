@@ -17,7 +17,7 @@ public class VentanaHistorial {
         this.sesion      = sesion;
         this.controlador = ruletaControlador;
 
-        ResultadoControlador resultadoControlador = new ResultadoControlador(sesion);
+        ResultadoControlador resultadoControlador = new ResultadoControlador(ruletaControlador.getRuleta().getRepositorio());
 
         frame.setSize(500, 400);
         frame.setLayout(null);

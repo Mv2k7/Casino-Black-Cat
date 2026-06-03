@@ -3,15 +3,15 @@ package Controlador;
 import Modelo.*;
 
 public class ResultadoControlador {
-        private SesionControlador sesion;
+        private IRepositorioResultados repositorio;
 
-        public ResultadoControlador(SesionControlador sesion) {
-            this.sesion = sesion;
+        public ResultadoControlador(IRepositorioResultados repositorio) {
+            this.repositorio = repositorio;
         }
 
         public String getTextoHistorial() {
             StringBuilder sb = new StringBuilder();
-            for (Resultado r : sesion.getUsuarioActual().getHistorial()) {
+            for (Resultado r : repositorio.obtenerTodos()) {
                 sb.append("Número: ").append(r.getNumero());
                 sb.append(" | Apuesta: ").append(r.getEtiqueta());
                 sb.append(r.isAcierto() ? " | GANÓ" : " | PERDIÓ");

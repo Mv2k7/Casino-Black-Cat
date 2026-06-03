@@ -1,6 +1,7 @@
 package Vista;
 
 import Controlador.*;
+import Modelo.RepositorioArchivo;
 import Modelo.Ruleta;
 
 import javax.swing.*;
@@ -44,7 +45,7 @@ public class VentanaLogin {
 
         if (sesion.iniciarSesion(usuario, clave)) {
             frame.dispose();
-            Ruleta ruleta = new Ruleta(sesion.getUsuarioActual().getSaldo());
+            Ruleta ruleta = new Ruleta(sesion.getUsuarioActual().getSaldo(), new RepositorioArchivo(usuario + "_historial.csv"));
             RuletaControlador ruletaControlador = new RuletaControlador(ruleta, sesion);
             new VentanaMenu(sesion, ruletaControlador).mostrarVentana();
         } else {
