@@ -12,23 +12,23 @@ public class EstadisticasControlador {
     }
 
     public int getTotalJugadas() {
-        return estadisticas.calcularTotalJugadas(repositorio);
+        return estadisticas.calcularTotalJugadas(repositorio.obtenerTodos());
     }
 
     public int getVictorias() {
-        return estadisticas.calcularVictorias(repositorio);
+        return estadisticas.calcularVictorias(repositorio.obtenerTodos());
     }
 
     public double getPorcentajeVictorias() {
-        return estadisticas.calcularPorcentajeVictorias(repositorio);
+        return estadisticas.calcularPorcentajeVictorias(repositorio.obtenerTodos());
     }
 
     public int getRachaMaxima() {
-        return estadisticas.calcularRachaMaxima(repositorio);
+        return estadisticas.calcularRachaMaxima(repositorio.obtenerTodos());
     }
 
     public String getTipoMasJugado() {
         if (repositorio.obtenerTodos().isEmpty()) return "No se ha jugado";
-        return estadisticas.calcularTipoMasJugado(repositorio);
+        return estadisticas.calcularTipoMasJugado(repositorio.obtenerTodos());
     }
 }

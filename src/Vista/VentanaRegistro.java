@@ -14,7 +14,7 @@ public class VentanaRegistro {
 
 
     public VentanaRegistro(SesionControlador sesion, RuletaControlador ruleta) {
-        ResultadoControlador resultadoControlador = new ResultadoControlador(sesion);
+        ResultadoControlador resultadoControlador = new ResultadoControlador(ruleta.getRuleta().getRepositorio());
         frame.setSize(500, 400);
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
