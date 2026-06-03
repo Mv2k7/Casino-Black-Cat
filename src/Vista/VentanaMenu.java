@@ -1,7 +1,6 @@
 package Vista;
 
 import Controlador.*;
-import Modelo.Ruleta;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +12,7 @@ public class VentanaMenu {
     private final JButton btnInicio         = new JButton("Inicio");
     private final JButton btnJugar          = new JButton("Jugar");
     private final JButton btnHistorial      = new JButton("Historial");
+    private final JButton btnEstadisticas   = new JButton("Estadisticas");
     private final JButton btnSalir          = new JButton("Salir");
     private final JPanel panelInfo          = new JPanel();
 
@@ -36,6 +36,7 @@ public class VentanaMenu {
                         "A la izquierda tienes:\n" +
                         "• Jugar: abre la ventana de juego\n" +
                         "• Historial: abre el historial\n" +
+                        "• Estadísticas: abre las estadísticas\n" +
                         "• Salir: cierra sesión");
         txtInfo.setBounds(10, 10, 320, 230);
         txtInfo.setEditable(false);
@@ -46,17 +47,20 @@ public class VentanaMenu {
         btnInicio.setBounds(10, 10, 100, 30);
         btnJugar.setBounds(10, 50, 100, 30);
         btnHistorial.setBounds(10, 90, 100, 30);
-        btnSalir.setBounds(10, 130, 100, 30);
+        btnEstadisticas.setBounds(10, 130, 100, 30);
+        btnSalir.setBounds(10, 170, 100, 30);
 
         frame.add(btnInicio);
         frame.add(btnJugar);
         frame.add(btnHistorial);
+        frame.add(btnEstadisticas);
         frame.add(btnSalir);
         frame.add(panelInfo);
 
         btnInicio.addActionListener(e -> abrirInicio());
         btnJugar.addActionListener(e -> abrirJugar());
         btnHistorial.addActionListener(e -> abrirHistorial());
+        btnEstadisticas.addActionListener(e -> abrirEstadisticas());
         btnSalir.addActionListener(e -> abrirSalir());
     }
 
@@ -64,19 +68,28 @@ public class VentanaMenu {
         frame.dispose();
         mostrarVentana();
     }
+
     private void abrirJugar() {
         frame.dispose();
         new VentanaRuleta(sesion, controlador).mostrarRuleta();
     }
+
     private void abrirHistorial() {
         frame.dispose();
         new VentanaHistorial(sesion, controlador).mostrarHistorial();
     }
+
+    private void abrirEstadisticas() {
+        frame.dispose();
+        new VentanaEstadisticas(sesion, controlador).mostrarEstadisticas();
+    }
+
     private void abrirSalir() {
         sesion.cerrarSesion();
         frame.dispose();
         new VentanaLogin(sesion).mostrarVentana();
     }
+
     public void mostrarVentana() {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
