@@ -2,8 +2,6 @@ package Controlador;
 
 import Modelo.Estadisticas;
 import Modelo.Resultado;
-import Modelo.TipoApuesta;
-
 import java.util.List;
 
 public class EstadisticasControlador {
