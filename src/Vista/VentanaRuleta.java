@@ -1,31 +1,30 @@
 package Vista;
 
 import Controlador.*;
-import Modelo.TipoApuesta;
+import Modelo.*;
 
 import javax.swing.*;
 
 public class VentanaRuleta {
-    private final JFrame frame                      = new JFrame("RULETA! - Casino Black Cat");
-    private final JComboBox<String> cbTipoApuesta   = new JComboBox<>(new String[]{"Tipo de apuesta...", "Colores", "Paridad"});
-    private final JComboBox<String> cbOpcion        = new JComboBox<>(new String[]{"Seleccione opcion..."});
-    private final JButton btnGirar                  = new JButton("Girar Ruleta!");
-    private final JButton btnAtras                  = new JButton("Atras");
-    private final JTextField txtMonto               = new JTextField();
-    private final JLabel lblMonto                   = new JLabel("Monto:");
+    private final JFrame frame                    = new JFrame("RULETA! - Casino Black Cat");
+    private final JComboBox<String> cbTipoApuesta = new JComboBox<>(new String[]{"Tipo de apuesta...", "Colores", "Paridad"});
+    private final JComboBox<String> cbOpcion      = new JComboBox<>(new String[]{"Seleccione opcion..."});
+    private final JButton btnGirar                = new JButton("Girar Ruleta!");
+    private final JButton btnAtras                = new JButton("Atras");
+    private final JTextField txtMonto             = new JTextField();
+    private final JLabel lblMonto                 = new JLabel("Monto:");
 
     private final SesionControlador sesion;
     private final RuletaControlador controlador;
 
     public VentanaRuleta(SesionControlador sesion, RuletaControlador ruletaControlador) {
-        this.sesion = sesion;
+        this.sesion      = sesion;
         this.controlador = ruletaControlador;
 
         frame.setSize(500, 400);
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Posiciones
         cbTipoApuesta.setBounds(70, 80, 150, 30);
         cbOpcion.setBounds(250, 80, 150, 30);
         btnGirar.setBounds(300, 180, 150, 30);
@@ -42,19 +41,20 @@ public class VentanaRuleta {
 
         btnAtras.addActionListener(e -> botonAtras());
         cbTipoApuesta.addActionListener(e -> actualizarOpciones());
-        btnGirar.addActionListener(e -> intentarJugar(ruletaControlador));
+        btnGirar.addActionListener(e -> intentarJugar());
     }
 
     private void botonAtras() {
         frame.dispose();
         new VentanaMenu(sesion, controlador).mostrarVentana();
-
     }
-    private void intentarJugar(RuletaControlador controlador) {
+
+    private void intentarJugar() {
         if (cbOpcion.getSelectedIndex() <= 0) {
-            JOptionPane.showMessageDialog(null, "Seleccione una opcion");
+            JOptionPane.showMessageDialog(frame, "Seleccione una opcion");
             return;
         }
+
         int monto;
         try {
             monto = Integer.parseInt(txtMonto.getText());
@@ -62,11 +62,18 @@ public class VentanaRuleta {
             JOptionPane.showMessageDialog(frame, "Ingrese un monto válido");
             return;
         }
+
         String opcion = (String) cbOpcion.getSelectedItem();
-        TipoApuesta tipo = TipoApuesta.valueOf(opcion.toUpperCase());
+        ApuestaBase apuesta = switch (opcion) {
+            case "Rojo"  -> new ApuestaRojo(monto);
+            case "Negro" -> new ApuestaNegro(monto);
+            case "Par"   -> new ApuestaPar(monto);
+            case "Impar" -> new ApuestaImpar(monto);
+            default -> throw new IllegalArgumentException("Opción inválida");
+        };
 
         try {
-            String resultado = controlador.intentarJugar(tipo, monto);
+            String resultado = controlador.intentarJugar(apuesta);
             JOptionPane.showMessageDialog(frame, resultado);
         } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(frame, e.getMessage());

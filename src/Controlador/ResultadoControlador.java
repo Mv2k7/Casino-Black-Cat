@@ -13,7 +13,7 @@ public class ResultadoControlador {
             StringBuilder sb = new StringBuilder();
             for (Resultado r : sesion.getUsuarioActual().getHistorial()) {
                 sb.append("Número: ").append(r.getNumero());
-                sb.append(" | Apuesta: ").append(r.getTipo());
+                sb.append(" | Apuesta: ").append(r.getEtiqueta());
                 sb.append(r.isAcierto() ? " | GANÓ" : " | PERDIÓ");
                 sb.append("\n");
             }

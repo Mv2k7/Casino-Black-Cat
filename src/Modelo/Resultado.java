@@ -5,13 +5,13 @@ import java.util.List;
 
 public class Resultado {
     private final int numero;
-    private final TipoApuesta tipo;
+    private final String etiqueta;
     private final boolean acierto;
     private final int saldo;
 
-    public Resultado(int numero, TipoApuesta tipo, int saldo, boolean acierto) {
+    public Resultado(int numero, String etiqueta, int saldo, boolean acierto) {
         this.numero = numero;
-        this.tipo = tipo;
+        this.etiqueta = etiqueta;
         this.acierto = acierto;
         this.saldo = saldo;
     }
@@ -20,8 +20,8 @@ public class Resultado {
         return numero;
     }
 
-    public TipoApuesta getTipo() {
-        return tipo;
+    public String getEtiqueta() {
+        return etiqueta;
     }
 
     public boolean isAcierto() {

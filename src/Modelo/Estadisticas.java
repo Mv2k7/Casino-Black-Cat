@@ -38,20 +38,20 @@ public class Estadisticas {
         return rachaMaxima;
     }
 
-    public TipoApuesta calcularTipoMasJugado(List<Resultado> historial) {
+    public String calcularTipoMasJugado(List<Resultado> historial) {
         int contRojo = 0, contNegro = 0, contPar = 0, contImpar = 0;
         for (Resultado r : historial) {
-            switch (r.getTipo()) {
-                case ROJO  -> contRojo++;
-                case NEGRO -> contNegro++;
-                case PAR   -> contPar++;
-                case IMPAR -> contImpar++;
+            switch (r.getEtiqueta()) {
+                case "Rojo"  -> contRojo++;
+                case "Negro" -> contNegro++;
+                case "Par"   -> contPar++;
+                case "Impar" -> contImpar++;
             }
         }
         int max = Math.max(Math.max(contRojo, contNegro), Math.max(contPar, contImpar));
-        if (max == contRojo)  return TipoApuesta.ROJO;
-        if (max == contNegro) return TipoApuesta.NEGRO;
-        if (max == contPar)   return TipoApuesta.PAR;
-        return TipoApuesta.IMPAR;
+        if (max == contRojo)  return "Rojo";
+        if (max == contNegro) return "Negro";
+        if (max == contPar)   return "Par";
+        return "Impar";
     }
 }

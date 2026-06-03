@@ -34,7 +34,7 @@ public class EstadisticasControlador {
         return estadisticas.calcularRachaMaxima(getHistorial());
     }
 
-    public TipoApuesta getTipoMasJugado() {
+    public String getTipoMasJugado() {
         if (getHistorial().isEmpty()) return null;
         return estadisticas.calcularTipoMasJugado(getHistorial());
     }

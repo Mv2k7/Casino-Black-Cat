@@ -24,25 +24,23 @@ public class Ruleta {
         if (monto > 0) saldo += monto;
     }
 
-    public Resultado jugar(TipoApuesta tipo, int apuesta) {
+    public Resultado jugar(ApuestaBase apuesta) {
         int numero = girarRuleta();
-        boolean acierto = evaluarResultado(numero, tipo);
+        String color = colorDe(numero);
+        boolean acierto = apuesta.acierta(numero, color);
         if (acierto) {
-            saldo += apuesta;
+            saldo += apuesta.getMonto();
         } else {
-            saldo -= apuesta;
+            saldo -= apuesta.getMonto();
         }
-        return new Resultado(numero, tipo, apuesta, acierto);
+        return new Resultado(numero, apuesta.getEtiqueta(), apuesta.getMonto(), acierto);
     }
 
-    public boolean evaluarResultado(int numero, TipoApuesta tipo) {
-        return switch (tipo) {
-                case ROJO -> esRojo(numero);
-                case NEGRO -> !esRojo(numero) && numero != 0;
-                case PAR -> numero % 2 == 0 && numero != 0;
-                case IMPAR -> numero % 2 != 0;
-        };
+    private String colorDe(int numero) {
+        if (numero == 0) return "verde";
+        return esRojo(numero) ? "rojo" : "negro";
     }
+
     private int girarRuleta() {
         return rng.nextInt(37);
     }

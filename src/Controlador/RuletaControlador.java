@@ -10,12 +10,12 @@ public class RuletaControlador {
         this.ruleta = ruleta;
         this.sesion = sesion;
     }
-    public String intentarJugar(TipoApuesta tipo, int monto) {
-        if (monto <= 0)
+    public String intentarJugar(ApuestaBase apuesta) {
+        if (apuesta.getMonto() <= 0)
             throw new IllegalArgumentException("Montno invalido");
-        if (monto > ruleta.getSaldo())
+        if (apuesta.getMonto() > ruleta.getSaldo())
             throw new IllegalArgumentException("Saldo Insuficiente");
-        Resultado resultado = ruleta.jugar(tipo, monto);
+        Resultado resultado = ruleta.jugar(apuesta);
         sesion.getUsuarioActual().agregarResultado(resultado);
         return "Número: " + resultado.getNumero() +
                 (resultado.isAcierto() ? " - GANASTE!" : " - PERDISTE") +
